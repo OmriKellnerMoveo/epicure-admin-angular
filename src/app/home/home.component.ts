@@ -13,10 +13,10 @@ export class HomeComponent implements OnInit {
   }
   logOut(){
     this.router.navigateByUrl('/login').then(r => console.log(r)).catch(err=>console.log(err));
-    localStorage.removeItem("userName")
+    localStorage.removeItem("token")
   }
   checkIfConnecting(){
-    if (localStorage.getItem("userName")==='demo@skills.co.il'){
+    if (localStorage.getItem("token")!==undefined){
       return true
     }
     else

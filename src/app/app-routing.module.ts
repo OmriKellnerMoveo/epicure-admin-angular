@@ -7,8 +7,10 @@ import {LoginComponent} from "./pages/login/login.component";
 import {AuthGuardService} from "./auth/auth-guard.service";
 import {RegisterComponent} from "./pages/register/register.component";
 
-let isLoggedIn:boolean=localStorage.getItem("userName")==='demo@skills.co.il';
-
+let isLoggedIn:boolean=false;
+    if(localStorage.getItem("token")){
+        isLoggedIn=true
+    }
 const appRoutes: Routes=[
     {path: '', redirectTo: isLoggedIn?'/restaurants':'/login', pathMatch: 'full'},
     {path: 'restaurants', component: RestaurantsComponent ,canActivate: [AuthGuardService] },
