@@ -5,7 +5,6 @@ import {ChefsService} from 'src/app/services/chefs.service';
 import {DishesService} from 'src/app/services/dishes.service';
 import {Restaurant} from '../../models/restaurant.model';
 import {Dish} from "../../models/dish.model";
-import {isNewLine} from "@angular/compiler/src/chars";
 
 @Component({
     selector: 'app-restaurant-modal',
@@ -43,28 +42,6 @@ textArray:string[]=['1','2','3','4','5']
         })
     }
 
-    makeListWithoutSelected(chefs:Chef[],ChefSelected:Chef):Chef[]{
-        console.log(chefs,'c')
-        console.log(ChefSelected,'sc')
-        let index=this.chefs.indexOf(ChefSelected)
-        let newList=this.chefs.splice(index,1)
-
-        return newList
-       // console.log(selected,'selected')
-       //  console.log(this.chefs,'chefs')
-       //
-       //  let index=this.chefs.indexOf(selected)
-       //  console.log(index,index)
-       // let newList:Chef[] = this.chefs.splice(index,1);
-       // console.log(newList,'new list')
-       // return newList
-
-        // let index:number;
-        // for (let i =0;i<this.restaurantDishes.length;i++){
-        //     if (this.restaurantDishes[i].name)
-        // }
-        // let newList= this.restaurantDishes.indexOf(selected)
-    }
     fetchGetAllChefs() {
         this.chefsService.getAllChefs().subscribe(chefs => {
             this.chefs = chefs;

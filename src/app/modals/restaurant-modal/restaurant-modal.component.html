@@ -38,10 +38,11 @@
             >{{ t}}</option>
         </select>
     <label *ngIf="actionMode!=='add'" for="restaurantDishes"> Signature Dish: </label>
-    <select *ngIf="actionMode!=='add'" id="restaurantDishes" formControlName="signature_dish">
-      <option  *ngFor="let dish of restaurantDishes" [ngValue]="dish" [defaultSelected]="this.editRestaurant['signature_dish']._id===dish._id">
+    <select *ngIf="actionMode!=='add' || restaurantDishes.length===0" id="restaurantDishes" formControlName="signature_dish">
+      <option  *ngFor="let dish of restaurantDishes" [ngValue]="dish">
         {{ dish.name }}
       </option>
+<!--        [defaultSelected]="this.editRestaurant['signature_dish']._id===dish._id"-->
     </select>
     </div>
     <div >
