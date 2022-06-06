@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
     Swal.fire('Hi', 'Welcome to Epicure!', 'success').then(r => console.log(r));
   }
   tinyAlert() {
-    Swal.fire('Hi', `Unauthorized email address! try to insert 'demo@skills.co.il'`, 'error').then(r =>console.log(r)) ;
+    Swal.fire('Hi', `Unauthorized email address!'`, 'error').then(r =>console.log(r)) ;
   }
 }
 
