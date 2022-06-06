@@ -1,0 +1,72 @@
+<div>
+    <form [formGroup]="dishForm" (ngSubmit)="onSubmit()">
+      <h2>{{ message }}</h2>
+      <div class="containerForm">
+        <div>
+          <label for="name">Name: </label>
+          <input id="name" formControlName="name" type="text" class="form-control" />
+          <span
+                  *ngIf="
+          !dishForm.get('name').valid &&
+          dishForm.get('name').touched
+        "
+          >
+        Please enter a valid name
+      </span>
+          <label for="price">Price: </label>
+          <input id="price" type="number" formControlName="price" class="form-control" required/>
+
+          <label for="dishesImages"> Image: </label>
+            <select id="dishesImages" formControlName="image">
+                <option  *ngFor="let dishImages of dishesImages" [ngValue]="dishImages">
+                    {{ dishImages }}
+                </option>
+            </select>
+
+
+            <label for="restaurant_id"> Restaurant: </label>
+            <select id="restaurant_id" formControlName="restaurant_id">
+                <option [defaultSelected]="true" [value]="dishForm.get('restaurant_id')">
+                    <h6>{{ this.editDish.restaurant_id['name'] }}</h6>
+                </option>
+                <option  *ngFor="let restaurant of restaurants"
+                        [ngValue]="restaurant ">
+                   <h6>{{restaurant.name}}</h6>
+                </option>
+            </select>
+        </div>
+        <div>
+
+          <label for="description">Ingredients: </label>
+          <textarea id="description" type="area" formControlName="description" class="form-control" required></textarea>
+          <label for="tags">Tags: </label>
+          <div class="tags">
+            <div id="tags" *ngFor="let tag of tags; let i=index" class="col-md-2">
+              <label>
+                <input [checked]="dishTags.includes(tag)" type="checkbox" [id]="tag" [value]="tag" (change)="setDishTag($event)">
+                {{tag}}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br />
+      <button class="btn btn-success" type="submit">
+        {{ actionMode === "edit" ? "Update" : "Add" }}
+      </button>
+      <button class="btn btn-secondary" (click)="closeModal()">Close</button>
+    </form>
+  </div>
+<!--[defaultSelected]="this.editRestaurant.image"-->
+<!--(change)="onCheckChange($event)"-->
+<!--      <input-->
+<!--        id="image"-->
+<!--        formControlName="image"-->
+<!--        type="text"-->
+<!--        class="form-control"-->
+<!--        #image-->
+<!--      />-->
+<!--      <div>-->
+<!--        <img   [src]="image.value" />-->
+<!--      </div>-->

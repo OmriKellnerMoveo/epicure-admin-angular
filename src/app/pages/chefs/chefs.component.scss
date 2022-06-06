@@ -1,0 +1,63 @@
+img {
+  width: 90px;
+  height: 80px;
+  //border-radius: 50%;
+}
+.card {
+  width: 30vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: auto;
+  margin-bottom: 45px;
+  border: 3px solid bisque;
+  border-radius: 10px;
+}
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+thead{
+  background: skyblue;
+}
+.form-control {
+  width: 194px;
+}
+
+p {
+    margin: 0 0 10px;
+    width: 80%;
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid skyblue;
+  text-align: left;
+  padding: 8px;
+}
+tbody:nth-child(even) {
+  background-color: #dddddd;
+}
+.cursorPointer{
+  cursor: pointer;
+}
+.AddButton{
+  height: 40px;
+  margin-top: 50px;
+  margin-bottom: 30px;
+  color: white;
+  background: skyblue;
+  border: #979797 solid 1px;
+}
+.chefOfTheWeek{
+  margin-bottom: 5vw;
+  padding: 2px;
+}

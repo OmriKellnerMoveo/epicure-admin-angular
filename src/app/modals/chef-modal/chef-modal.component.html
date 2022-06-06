@@ -1,0 +1,29 @@
+<div>
+    <form [formGroup]="chefForm" (ngSubmit)="onSubmit()">
+        <h2>{{ message }}</h2>
+        <div class="containerForm">
+            <div>
+                <label >*Name: </label>
+                <input id="name" formControlName="name" type="text" class="form-control" required/>
+                <label> Image: </label>
+                <select id="restaurantImages" formControlName="image">
+                    <option *ngFor="let chefImage of chefImages" [ngValue]="chefImage"
+                            [defaultSelected]="this.editChef.image">
+                        {{ chefImage }}
+                    </option>
+                </select>
+            </div>
+            <div>
+                <label for="description">Description: </label>
+                <textarea id="description" formControlName="description" class="form-control"></textarea>
+            </div>
+        </div>
+        <br/>
+        <button class="btn btn-success"
+                type="submit"
+        >
+            {{ actionMode === "edit" ? "Update" : "Add" }}
+        </button>
+        <button class="btn btn-secondary" (click)="closeModal()">Close</button>
+    </form>
+</div>

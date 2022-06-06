@@ -1,0 +1,73 @@
+<div>
+  <form [formGroup]="restaurantForm" (ngSubmit)="onSubmit()">
+    <h2>{{ message }}</h2>
+   <div class="containerForm">
+    <div>
+    <label for="name">*Name: </label>
+    <input id="name" formControlName="name" type="text" class="form-control" />
+    <span
+      *ngIf="
+        !restaurantForm.get('name').valid &&
+        restaurantForm.get('name').touched
+      "
+    >
+      invalid name
+    </span>
+    <label for="chef">*Chef: </label>
+    <select id="Chef" formControlName="Chef">
+<!--      <option [defaultSelected]="true" [value]="restaurantForm.get('Chef')">-->
+<!--        {{ this.restaurantForm.value.Chef['name'] }}-->
+<!--      </option>-->
+      <option *ngFor="let c of chefs"
+              [ngValue]="c"
+              [selected]="c._id===this.restaurantForm.value.Chef['_id']"
+      >{{c.name + ' ' + this.restaurantForm.value.Chef['name'] +' ' +(c._id===this.restaurantForm.value.Chef['_id'])}}</option>
+    </select>
+    <span
+      *ngIf="
+        !restaurantForm.get('Chef').valid &&
+        restaurantForm.get('Chef').touched
+      "
+    >
+      Please Choose a chef
+    </span>
+        <select>
+            <option *ngFor="let t of textArray"
+                    [ngValue]="t"
+                    [defaultSelected]="t=='3'"
+            >{{ t}}</option>
+        </select>
+    <label *ngIf="actionMode!=='add'" for="restaurantDishes"> Signature Dish: </label>
+    <select *ngIf="actionMode!=='add'" id="restaurantDishes" formControlName="signature_dish">
+      <option  *ngFor="let dish of restaurantDishes" [ngValue]="dish" [defaultSelected]="this.editRestaurant['signature_dish']._id===dish._id">
+        {{ dish.name }}
+      </option>
+    </select>
+    </div>
+    <div >
+    <label > Is Popular? </label>
+    <div class="radio" *ngFor="let status of isPopular">
+      <label>
+        <input type="radio" formControlName="isPopular" [value]="status" />
+        {{ status === false ? "No" : "Yes" }}
+      </label>
+    </div>
+    <label> Image: </label>
+        <select id="restaurantImages" formControlName="image">
+            <option  *ngFor="let restaurantImage of restaurantImages" [ngValue]="restaurantImage" [defaultSelected]="this.editRestaurant.image">
+                {{ restaurantImage }}
+            </option>
+        </select>
+    </div>
+   </div>
+    <br />
+    <button
+      class="btn btn-success"
+      type="submit"
+      [disabled]="!restaurantForm.valid"
+    >
+      {{ actionMode === "edit" ? "Update" : "Add" }}
+    </button>
+    <button class="btn btn-close" (click)="close_Edit_Modal()">Close</button>
+  </form>
+</div>

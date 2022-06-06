@@ -1,0 +1,67 @@
+<div class="container">
+    <button (click)="this.setShowModal('add')"
+            type="button" class="AddButton btn-toolbar">
+        Add New Dish
+    </button>
+    <app-dish-modal
+            autofocus
+            *ngIf="showModal && actionMode==='add'"
+            [message]="'Add '+objectType"
+            [actionMode]="actionMode"
+            [editDish]="{ _id:'',  name:'', image:'', description:'', price:null, restaurant_id:{ _id:'',  name:'', image:'', Chef:null, signatureDish:null, isPopular: false}, tags:['']}"
+            (closeModalPopup)="closeModal($event)"
+            (dishCreated)="addDish($event)"
+    ></app-dish-modal>
+
+    <app-dish-modal
+            autofocus
+            *ngIf="showModal && actionMode==='edit'"
+            [message]="'Edit '+objectType"
+            [actionMode]="actionMode"
+            [editDish]="editDish"
+            (closeModalPopup)="closeModal($event)"
+            (dishCreated)="addDish($event)"
+    ></app-dish-modal>
+
+    <app-delete-modal
+            autofocus
+            *ngIf="showDeleteModal"
+            [objectType]="objectType"
+            [deletedDishId]="deletedDishId"
+            (closeDeleteModalPopup)="closeDeleteModal($event)"
+            (SelectedForDelete)="deleteDish($event)"
+    ></app-delete-modal>
+<table>
+    <thead>
+    <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Image</th>
+        <th scope="col">Description</th>
+        <th scope="col">Price</th>
+        <th scope="col">Tags</th>
+        <th scope="col">Restaurant</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let dish of this.dishes">
+    <tr>
+        <td>{{ dish.name }}</td>
+        <td><img *ngIf="dish.image!=='no'" src='../assets/dish_images/{{dish.image }}.png'
+                 class="imageStyle">
+            <img *ngIf="dish.image==='no'" src='../assets/restaurant_images/claro_img.png' class="imageStyle">
+        </td>
+        <td>{{ dish['description']}}</td>
+        <td><div class="priceContainer"> <img class="priceIcon" src="../../../assets/ils-icon.png" alt="priceIcon"/>{{dish['price']}}</div></td>
+        <td><h6 *ngFor="let tag of dish['tags']">{{tag+' '}}</h6></td>
+        <td>{{dish['restaurant_id']['name']}}</td>
+        <td>
+            <mat-icon class="cursorPointer" (click)="setModal(dish,'edit')">mode_edit</mat-icon>
+        </td>
+        <td>
+            <mat-icon class="cursorPointer" (click)="setDeleteModal(dish)">delete</mat-icon>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</div>

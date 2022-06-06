@@ -1,0 +1,29 @@
+.deleteModal{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: white;
+    margin-bottom: 40px;
+    padding:10px;
+    text-align: center;
+    border: 1px solid skyblue;
+    .content{
+        h2{
+            color: #979797;
+        }
+        .btn.btn-warning{
+            background-color:firebrick;
+            border-color:firebrick;
+            padding-left: 20px;
+            padding-right: 20px;
+            margin: 15px;
+        }
+        .btn.btn-secondary{
+            padding-left: 24px;
+            padding-right: 24px;
+            margin: 3px;
+            background-color: darkgray;
+        }
+    }
+  
+}

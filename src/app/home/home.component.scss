@@ -1,0 +1,24 @@
+.navbar.navbar-default{
+    padding: 12px;
+    background: #fafafa;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.logoStyle{
+    //width: 50px;
+    border-radius: 50%;
+}
+.logoContainer{
+    //border-radius: 50%;
+}
+.navbar-brand {
+    font-size: 20px;
+}
+.logOutStyle{
+}
+.navContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+}

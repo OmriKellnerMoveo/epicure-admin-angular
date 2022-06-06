@@ -1,0 +1,15 @@
+<h2>{{ message }}</h2>
+<form [formGroup]="chefForm" (ngSubmit)="onSubmit()">
+    <label for="chef">Choose Chef: </label>
+<select id="Chef" formControlName="Chef">
+    <option  *ngFor="let chef of chefs" [ngValue]="chef" [defaultSelected]="chef._id===chefOfTheWeekId" >{{chef.name}}</option>
+</select>
+<br />
+<button
+        class="btn btn-success"
+        type="submit"
+>
+  Update
+</button>
+<button class="btn btn-close" (click)="closeModal()">Close</button>
+</form>

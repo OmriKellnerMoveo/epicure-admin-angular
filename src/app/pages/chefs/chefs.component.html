@@ -1,0 +1,97 @@
+<div class="container">
+    <button (click)="this.setShowModal('add')"
+            type="button" class="AddButton btn-toolbar">
+        Add New Chef
+    </button>
+
+
+    <app-chef-modal
+            autofocus
+            *ngIf="showModal && actionMode==='add'"
+            [message]="'Add '+objectType"
+            [actionMode]="actionMode"
+            [editChef]="{ _id:'',  name:'', image:'', description:''}"
+            (closeModalPopup)="closeModal($event)"
+            (chefCreated)="addChef($event)"
+    ></app-chef-modal>
+
+
+    <app-chef-modal
+            autofocus
+            *ngIf="showModal && actionMode==='edit'"
+            [message]="'Edit '+objectType"
+            [actionMode]="actionMode"
+            [editChef]="editChef"
+            (closeModalPopup)="closeModal($event)"
+            (chefCreated)="addChef($event)"
+    ></app-chef-modal>
+
+    <app-delete-modal
+            autofocus
+            *ngIf="showDeleteModal"
+            [objectType]="objectType"
+            [deletedChefId]="deletedChefId"
+            (closeDeleteModalPopup)="closeDeleteModal($event)"
+            (SelectedForDelete)="deleteChef($event)"
+    ></app-delete-modal>
+
+    <div class="chefOfTheWeek">
+        <h1 class="card-body">Chef Of The Week:</h1>
+        <table>
+            <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Image</th>
+                <th scope="col">Description</th>
+                <th scope="col">edit</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>{{chefOfTheWeek.name}}</td>
+                <td><img *ngIf="chefOfTheWeek.image!=='' && chefOfTheWeek.image!=='no'" src='../assets/chef_images/{{chefOfTheWeek.image}}.png' class="imageStyle" alt="defaultUserIcon">
+                    <img *ngIf="chefOfTheWeek.image==='no'" src='../assets/chef_images/defaultUserIcon.png' class="imageStyle" alt="defaultUserIcon"></td>
+                <td>{{chefOfTheWeek.description}}</td>
+                <td>
+                    <mat-icon class="cursorPointer" (click)="setChefOfTheWeekModal()">mode_edit</mat-icon>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <app-chef-of-the-week-modal
+            *ngIf="chefOfTheWeekShowModal"
+            [chefs]="chefs"
+            (editChefOfTheWeek)="editChefOfTheWeek($event)"
+            (closeModalPopup)="closeChefOfTheWeekModal($event)"
+    >
+    </app-chef-of-the-week-modal>
+
+
+    <h1 class="card-body">Chefs:</h1>
+    <table>
+        <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Image</th>
+            <th scope="col">Description</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+        </tr>
+        </thead>
+        <tbody *ngFor="let chef of chefs">
+        <tr>
+            <td>{{chef.name}}</td>
+            <td><img *ngIf="chef.image!=='' && chef.image!=='no' " src='../assets/chef_images/{{chef.image}}.png' class="imageStyle" alt="defaultUserIcon">
+                <img *ngIf="chef.image==='no'" src='../assets/chef_images/defaultUserIcon.png' class="imageStyle" alt="defaultUserIcon"></td>
+            <td>{{chef.description}}</td>
+            <td>
+                <mat-icon (click)="setModal(chef,'edit')" class="cursorPointer">mode_edit</mat-icon>
+            </td>
+            <td>
+                <mat-icon class="cursorPointer" (click)="openDeleteModal(chef)">delete</mat-icon>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

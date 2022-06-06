@@ -1,0 +1,21 @@
+.imageStyle{
+  height: 50px;
+}
+thead{
+  background: skyblue;
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid skyblue;
+  text-align: left;
+  padding: 8px;
+  width: 100vw;
+}
+tbody:nth-child(even) {
+  background-color: #dddddd;
+}

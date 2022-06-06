@@ -1,0 +1,43 @@
+.imageStyle{
+    height: 50px;
+}
+thead{
+    background: skyblue;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid skyblue;
+    text-align: left;
+    padding: 8px;
+}
+tbody:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.closeButtonContainer{
+    text-align: right;
+    margin-top: 30px;
+    margin-bottom: -40px;
+}
+.cursorPointer{
+    cursor: pointer;
+}
+.containerForms{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.AddButton{
+    height: 40px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    color: white;
+    background: skyblue;
+    border: #979797 solid 1px;
+}

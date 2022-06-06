@@ -1,0 +1,21 @@
+<div id="containerForm">
+    <form action="action_page.php" method="post">
+        <div class="imgContainer">
+            <img src="../../../assets/coverImage.png" alt="Avatar" class="avatar">
+        </div>
+        <div class="container">
+            <label for="username" ><b>Username:</b></label>
+            <input id="username" type="text" placeholder="Enter Username (insert 'demo@skills.co.il')" name="username" [(ngModel)]="username" required>
+             <label for="password" ><b>Password:</b></label>
+            <input id="password" type="text"  name="password" [(ngModel)]="password" required>
+            <nav style="margin-top: 30px" class="navbar navbar-expand-sm  navbar-dark">
+                <button class="login-button" (click)="logIn()" type="button">Log-in</button>
+            </nav>
+            <nav class=" navbar navbar-expand-sm  navbar-dark">
+                <button class="register-button" (click)="register()" type="button">Sign-Up</button>
+            </nav>
+        </div>
+    </form>
+</div>
+
+

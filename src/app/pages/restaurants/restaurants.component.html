@@ -1,0 +1,73 @@
+<div class="container">
+    <button (click)="this.setShowModal('add')"
+            type="button" class="AddButton btn-toolbar">
+        Add New Restaurant
+    </button>
+    <app-restaurant-modal
+            autofocus
+            *ngIf="showModal && actionMode==='add'"
+            [message]="'Add '+objectType"
+            [actionMode]="actionMode"
+            [editRestaurant]="{ _id:'',  name:'', image:'', Chef:null, signature_dish:null, isPopular: false}"
+            (closeEditModal)="closeModal($event)"
+            (restaurantCreated)="addRestaurant($event)"
+    ></app-restaurant-modal>
+
+
+    <app-restaurant-modal
+            autofocus
+            *ngIf="showModal && actionMode==='edit'"
+            [message]="'Edit '+objectType"
+            [actionMode]="actionMode"
+            [editRestaurant]="editRestaurant"
+            (closeEditModal)="closeModal($event)"
+            (restaurantCreated)="addRestaurant($event)"
+    ></app-restaurant-modal>
+
+    <app-delete-modal
+            autofocus
+            *ngIf="showDeleteModal"
+            [objectType]="objectType"
+            [deletedRestaurantId]="deletedRestaurantId"
+            (closeDeleteModalPopup)="closeDeleteModal($event)"
+            (SelectedForDelete)="deleteRestaurant($event)"
+    ></app-delete-modal>
+    <table>
+        <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Image</th>
+            <th scope="col">Chef</th>
+            <th scope="col">Signature Dish</th>
+            <th scope="col">Is Popular</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+        </tr>
+        </thead>
+        <tbody *ngFor="let restaurant of this['restaurants']">
+        <tr>
+            <td>{{ restaurant.name }}</td>
+            <td><img *ngIf="restaurant.image!=='no'" src='../assets/restaurant_images/{{restaurant.image }}.png'
+                     class="imageStyle">
+                <img *ngIf="restaurant.image==='no'" src='../assets/restaurant_images/claro_img.png' class="imageStyle">
+            </td>
+            <td>{{ restaurant['Chef'].name }}</td>
+            <td>{{ restaurant['signature_dish'] ? restaurant['signature_dish'].name : 'no' }}</td>
+            <td>{{ restaurant['isPopular'] ? "Yes" : "No" }}</td>
+            <td>
+                <mat-icon class="cursorPointer" (click)="setModal(restaurant,'edit')">mode_edit</mat-icon>
+            </td>
+            <td>
+                <mat-icon class="cursorPointer" (click)="setDeleteModal(restaurant)">delete</mat-icon>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+</div>
+
+
+
+
+
