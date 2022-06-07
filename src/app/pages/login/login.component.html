@@ -1,8 +1,11 @@
 <div id="containerForm">
-    <form action="action_page.php" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <div class="imgContainer">
-            <img src="../../../assets/coverImage.png" alt="Avatar" class="avatar">
+    <div class="imgContainer">
+        <div class="gray_box">
+            <h1 class="title-text">Login Page</h1>
         </div>
+    </div>
+    <form action="action_page.php" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
         <div class="container">
             <label for="username" ><b>Username:</b></label>
             <input id="username" type="text" placeholder="Enter Username (insert 'demo@skills.co.il')" name="username"  formControlName="email" required>
