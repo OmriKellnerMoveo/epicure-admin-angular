@@ -15,14 +15,13 @@
     </span>
     <label for="chef">*Chef: </label>
     <select id="Chef" formControlName="Chef">
-<!--      <option [defaultSelected]="true" [value]="restaurantForm.get('Chef')">-->
-<!--        {{ this.restaurantForm.value.Chef['name'] }}-->
-<!--      </option>-->
-      <option *ngFor="let c of chefs"
-              [ngValue]="c"
-              [selected]="c._id===this.restaurantForm.value.Chef['_id']"
-      >{{c.name + ' ' + this.restaurantForm.value.Chef['name'] +' ' +(c._id===this.restaurantForm.value.Chef['_id'])}}</option>
-    </select>
+      <option [defaultSelected]="true" [value]="restaurantForm.get('Chef')">
+        {{ this.restaurantForm.value.Chef['name'] }}
+      </option>
+              <option *ngFor="let c of newChefList"
+                      [ngValue]="c"
+              >{{c.name}}</option>
+            </select>
     <span
       *ngIf="
         !restaurantForm.get('Chef').valid &&
@@ -31,18 +30,17 @@
     >
       Please Choose a chef
     </span>
-        <select>
-            <option *ngFor="let t of textArray"
-                    [ngValue]="t"
-                    [defaultSelected]="t=='3'"
-            >{{ t}}</option>
-        </select>
     <label *ngIf="actionMode!=='add'" for="restaurantDishes"> Signature Dish: </label>
-    <select *ngIf="actionMode!=='add' || restaurantDishes.length===0" id="restaurantDishes" formControlName="signature_dish">
+    <select *ngIf="actionMode!=='add'" id="restaurantDishes" formControlName="signature_dish">
+        <option [defaultSelected]="true"  *ngIf="restaurantDishes &&restaurantDishes.length===0">
+            No Dishes
+        </option>
+        <option [defaultSelected]="true"  *ngIf="restaurantDishes &&restaurantDishes.length!==0" [value]="restaurantForm.get('signature_dish')">
+            {{this.editRestaurant.signature_dish.name}}
+        </option>
       <option  *ngFor="let dish of restaurantDishes" [ngValue]="dish">
         {{ dish.name }}
       </option>
-<!--        [defaultSelected]="this.editRestaurant['signature_dish']._id===dish._id"-->
     </select>
     </div>
     <div >
