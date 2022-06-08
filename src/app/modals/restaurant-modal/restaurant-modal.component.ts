@@ -19,17 +19,18 @@ export class RestaurantModalComponent implements OnInit {
     @Output() closeEditModal = new EventEmitter<Boolean>();
     @Output() restaurantCreated = new EventEmitter<Restaurant>();
 
-textArray:string[]=['1','2','3','4','5']
+
     chefs: Chef[];
     isPopular: boolean[] = [true, false]
     restaurantForm: FormGroup;
     restaurantDishes: Dish[]
     restaurantImages: string[] = ['claro_img', 'kitchenMarketImage', 'lumina_img', 'mashyaImage', 'onzaImage', 'tiger_Lilly_img']
-
+    newChefList:Chef[];
     constructor(private chefsService: ChefsService, private dishService: DishesService) {
     }
 
     ngOnInit(): void {
+        console.log(this.actionMode,'asc')
         this.fetchGetAllChefs();
         this.fetchGetAllRestaurantDishes();
         this.restaurantForm = new FormGroup({
@@ -38,16 +39,25 @@ textArray:string[]=['1','2','3','4','5']
             image: new FormControl(this.editRestaurant.image ? this.editRestaurant.image : ''),
             Chef: new FormControl(this.editRestaurant['Chef'] ? this.editRestaurant['Chef'] : '', Validators.required),
             isPopular: new FormControl(this.editRestaurant.isPopular ? this.editRestaurant.isPopular : false),
-            signature_dish: new FormControl(this.editRestaurant.signature_dish ? this.editRestaurant.signature_dish : 'no dishes', Validators.required),
+            signature_dish: new FormControl(this.editRestaurant.signature_dish ? this.editRestaurant.signature_dish : 'no', Validators.required),
         })
     }
 
     fetchGetAllChefs() {
         this.chefsService.getAllChefs().subscribe(chefs => {
             this.chefs = chefs;
+            this.CreateListWithoutObj(this.editRestaurant['Chef'],this.chefs)
         });
     }
 
+    CreateListWithoutObj(objA:Chef,objB:Chef[]){
+        this.newChefList=[]
+        objB.map((obj)=>{
+            if (obj["_id"]!==objA['_id']){
+                this.newChefList.push(obj)
+            }
+        })
+    }
     fetchGetAllRestaurantDishes() {
         if (this.actionMode !== 'add') {
             this.dishService.getAllRestaurantDishes(this.editRestaurant['_id']).subscribe(dish => {
@@ -63,5 +73,12 @@ textArray:string[]=['1','2','3','4','5']
 
     close_Edit_Modal() {
         this.closeEditModal.emit(false)
+    }
+    compareTwoObj(objA:string,objB:string):boolean
+    {
+        console.log(objA,'A')
+        console.log(objB,'B')
+        console.log(objA===objB)
+        return objA===objB
     }
 }

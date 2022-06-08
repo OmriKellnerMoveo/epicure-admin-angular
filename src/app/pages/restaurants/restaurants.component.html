@@ -4,7 +4,6 @@
         Add New Restaurant
     </button>
     <app-restaurant-modal
-            autofocus
             *ngIf="showModal && actionMode==='add'"
             [message]="'Add '+objectType"
             [actionMode]="actionMode"
@@ -15,7 +14,6 @@
 
 
     <app-restaurant-modal
-            autofocus
             *ngIf="showModal && actionMode==='edit'"
             [message]="'Edit '+objectType"
             [actionMode]="actionMode"
