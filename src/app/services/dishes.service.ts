@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import {Dish} from "../models/dish.model";
+import {GlobalApiService} from "./global-api.service";
 
 @Injectable({
     providedIn: 'root'
@@ -14,7 +15,7 @@ export class DishesService{
 
     getAllDishes(){
       this.dishes=[]
-    return this.http.get('http://localhost:9000/api/v1/dish')
+    return this.http.get(`${GlobalApiService}/api/v1/dish`)
         .pipe(map((responseData: Dish)=>{
           for(const key in responseData){
             this.dishes.push(responseData[key])
@@ -24,7 +25,7 @@ export class DishesService{
       }
     getAllRestaurantDishes(id){
         this.dishes=[]
-        return this.http.get(`http://localhost:9000/api/v1/dish/restaurants/${id}`)
+        return this.http.get(`${GlobalApiService}/api/v1/dish/restaurants/${id}`)
             .pipe(map((responseData: Dish)=>{
                 for(const key in responseData){
                     this.restaurantDishes.push(responseData[key])
@@ -37,7 +38,7 @@ export class DishesService{
       addDish(obj) {
         console.log(obj);
         return this.http.post(
-          'http://localhost:9000/api/v1/dish',
+            `${GlobalApiService}/api/v1/dish`,
           obj
         );
       }
@@ -45,14 +46,14 @@ export class DishesService{
       updateDish(id, obj) {
         console.log(id, obj);
         return this.http.put(
-          `http://localhost:9000/api/v1/dish/${id}`,
+            `${GlobalApiService}/api/v1/dish/${id}`,
           obj
         );
       }
 
       deleteDish(id) {
         return this.http.delete(
-          `http://localhost:9000/api/v1/dish/${id}`
+            `${GlobalApiService}/api/v1/dish/${id}`
         );
       }
 }
