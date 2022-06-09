@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Chef } from "../models/chefs.model";
+import {GlobalApiService} from "./global-api.service";
 
 @Injectable({
     providedIn: 'root'
@@ -13,7 +14,7 @@ export class ChefsService{
 
     getAllChefs(){
       this.chefs=[]
-    return this.http.get('http://localhost:9000/api/v1/chef')
+    return this.http.get(`${GlobalApiService}/api/v1/chef`)
         .pipe(map((responseData: Chef)=>{
           for(const key in responseData){
             this.chefs.push(responseData[key])
@@ -24,7 +25,7 @@ export class ChefsService{
       addChef(obj) {
         console.log(obj);
         return this.http.post(
-          'http://localhost:9000/api/v1/chef',
+            `${GlobalApiService}/api/v1/chef`,
           obj
         );
       }
@@ -32,7 +33,7 @@ export class ChefsService{
       updateChef(id, obj) {
         console.log(id, obj);
         return this.http.put(
-          `http://localhost:9000/api/v1/chef/${id}`,
+            `${GlobalApiService}/api/v1/chef/${id}`,
           obj
         );
       }
@@ -40,7 +41,7 @@ export class ChefsService{
       deleteChef(id) {
         console.log(id)
         return this.http.delete(
-          `http://localhost:9000/api/v1/chef/${id}`
+            `${GlobalApiService}/api/v1/chef/${id}`
         );
       }
 }

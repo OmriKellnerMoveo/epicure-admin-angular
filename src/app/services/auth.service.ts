@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
+import {GlobalApiService} from "./global-api.service";
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -8,7 +9,7 @@ export class AuthService {
 
   login(email: string, password: string): Promise<any> {
     return firstValueFrom(
-        this.http.post<any>('http://localhost:9000/api/v1/login', {
+        this.http.post<any>(`${GlobalApiService}/api/v1/login`, {
           email,
           password,
         })
@@ -17,7 +18,7 @@ export class AuthService {
 
   register(email: string, password: string): Promise<void> {
     return firstValueFrom(
-        this.http.post<void>('http://localhost:9000/api/v1/register', {
+        this.http.post<void>(`${GlobalApiService}/api/v1/register`, {
           email,
           password,
         })
