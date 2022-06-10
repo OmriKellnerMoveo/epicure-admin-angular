@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Restaurant} from "../../../models/restaurant.model";
 import {Chef} from "../../../models/chefs.model";
 import {Dish} from "../../../models/dish.model";
+import {LocalMode} from "../../../services/global-api.service";
 
 @Component({
   selector: 'app-table-row',
@@ -13,9 +14,15 @@ export class TableRowComponent implements OnInit {
 @Input() deletedChefId:Chef
 @Input() deletedDishId:Dish
 @Input() objectType:string
+  assetsPathDeleteImage:string
   constructor() { }
 
   ngOnInit(): void {
+    if (LocalMode){
+      this.assetsPathDeleteImage="../assets"
+    }else {
+      this.assetsPathDeleteImage="./assets"
+    }
   }
 
 }

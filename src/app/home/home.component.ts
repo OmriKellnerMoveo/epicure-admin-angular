@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
+import {LocalMode} from "../services/global-api.service";
 
 @Component({
   selector: 'app-home',
@@ -8,8 +9,13 @@ import {Router} from "@angular/router";
 })
 export class HomeComponent implements OnInit {
   constructor(private router: Router) { }
-
+assetsPathLogo:string
   ngOnInit(): void {
+    if (LocalMode){
+      this.assetsPathLogo="../../assets"
+    }else {
+      this.assetsPathLogo="./assets"
+    }
   }
   logOut(){
     this.router.navigateByUrl('/login').then(r => console.log(r)).catch(err=>console.log(err));

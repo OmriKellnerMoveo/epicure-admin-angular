@@ -49,8 +49,8 @@
             <tbody>
             <tr>
                 <td>{{chefOfTheWeek.name}}</td>
-                <td><img *ngIf="chefOfTheWeek.image!=='' && chefOfTheWeek.image!=='no'" src='../assets/chef_images/{{chefOfTheWeek.image}}.png' class="imageStyle" alt="defaultUserIcon">
-                    <img *ngIf="chefOfTheWeek.image==='no'" src='../assets/chef_images/defaultUserIcon.png' class="imageStyle" alt="defaultUserIcon"></td>
+                <td><img *ngIf="chefOfTheWeek.image!=='' && chefOfTheWeek.image!=='no'" src='{{assetsPatsChefs}}/chef_images/{{chefOfTheWeek.image}}.png' class="imageStyle" alt="defaultUserIcon">
+                    <img *ngIf="chefOfTheWeek.image==='no'" src='{{assetsPatsChefs}}/chef_images/defaultUserIcon.png' class="imageStyle" alt="defaultUserIcon"></td>
                 <td>{{chefOfTheWeek.description}}</td>
                 <td>
                     <mat-icon class="cursorPointer" (click)="setChefOfTheWeekModal()">mode_edit</mat-icon>
@@ -82,8 +82,8 @@
         <tbody *ngFor="let chef of chefs">
         <tr>
             <td>{{chef.name}}</td>
-            <td><img *ngIf="chef.image!=='' && chef.image!=='no' " src='../assets/chef_images/{{chef.image}}.png' class="imageStyle" alt="defaultUserIcon">
-                <img *ngIf="chef.image==='no'" src='../assets/chef_images/defaultUserIcon.png' class="imageStyle" alt="defaultUserIcon"></td>
+            <td><img *ngIf="chef.image!=='' && chef.image!=='no' " src='{{assetsPatsChefs}}/chef_images/{{chef.image}}.png' class="imageStyle" alt="defaultUserIcon">
+                <img *ngIf="chef.image==='no'" src='{{assetsPatsChefs}}/chef_images/defaultUserIcon.png' class="imageStyle" alt="defaultUserIcon"></td>
             <td>{{chef.description}}</td>
             <td>
                 <mat-icon (click)="setModal(chef,'edit')" class="cursorPointer">mode_edit</mat-icon>

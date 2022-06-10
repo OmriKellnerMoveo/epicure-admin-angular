@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Chef } from "../../models/chefs.model";
 import { ChefOfTheWeekService } from "../../services/chefOfTheWeek.service";
 import { ChefsService } from "../../services/chefs.service";
+import {LocalMode} from "../../services/global-api.service";
 
 @Component({
   selector: "app-chefs",
@@ -26,13 +27,18 @@ export class ChefsComponent implements OnInit {
     name:'',
     image: '',
     description: ''};
-
+  assetsPatsChefs:string
   constructor(
     private chefsService: ChefsService,
     private chefOfTheWeekService: ChefOfTheWeekService
   ) {}
 
   ngOnInit(): void {
+    if (LocalMode){
+      this.assetsPatsChefs="../assets"
+    }else {
+      this.assetsPatsChefs="./assets"
+    }
    this.fetchChef()
    this.fetchChefOfTheWeek()
   }

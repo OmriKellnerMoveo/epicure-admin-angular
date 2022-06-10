@@ -47,12 +47,12 @@
     <tbody *ngFor="let dish of this.dishes">
     <tr>
         <td>{{ dish.name }}</td>
-        <td><img *ngIf="dish.image!=='no'" src='../assets/dish_images/{{dish.image }}.png'
+        <td><img *ngIf="dish.image!=='no'" src='{{assetsPatsDishes}}/dish_images/{{dish.image }}.png'
                  class="imageStyle">
-            <img *ngIf="dish.image==='no'" src='../assets/restaurant_images/claro_img.png' class="imageStyle">
+            <img *ngIf="dish.image==='no'" src='{{assetsPatsDishes}}/restaurant_images/claro_img.png' class="imageStyle">
         </td>
         <td>{{ dish['description']}}</td>
-        <td><div class="priceContainer"> <img class="priceIcon" src="../../../assets/ils-icon.png" alt="priceIcon"/>{{dish['price']}}</div></td>
+        <td><div class="priceContainer"> <img class="priceIcon" src="{{assetsPathIcon}}/ils-icon.png" alt="priceIcon"/>{{dish['price']}}</div></td>
         <td><h6 *ngFor="let tag of dish['tags']">{{tag+' '}}</h6></td>
         <td>{{dish['restaurant_id']['name']}}</td>
         <td>
