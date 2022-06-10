@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {DishesService} from '../../services/dishes.service';
 import {Dish} from "../../models/dish.model";
+import {LocalMode} from "../../services/global-api.service";
 
 @Component({
     selector: 'app-dishes',
@@ -17,11 +18,19 @@ export class DishesComponent implements OnInit {
     showModal: boolean = false;
     showDeleteModal: boolean = false;
     deletedDishId: Dish;
-
+    assetsPatsDishes:string;
+    assetsPathIcon:string;
     constructor(private dishesService: DishesService) {
     }
 
     ngOnInit(): void {
+        if (LocalMode){
+            this.assetsPatsDishes="../assets"
+            this.assetsPathIcon="../../../assets"
+        }else {
+            this.assetsPatsDishes="./assets"
+            this.assetsPathIcon="./assets"
+        }
         this.fetchDishes()
     }
 

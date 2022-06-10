@@ -13,8 +13,8 @@
     <tbody>
     <tr>
         <td>{{ deletedRestaurantId.name }}</td>
-        <td><img *ngIf="deletedRestaurantId.image!=='no'" src='../assets/restaurant_images/{{deletedRestaurantId.image }}.png' class="imageStyle">
-            <img *ngIf="deletedRestaurantId.image==='no'" src='../assets/restaurant_images/claro_img.png' class="imageStyle"></td>
+        <td><img *ngIf="deletedRestaurantId.image!=='no'" src='{{assetsPathDeleteImage}}/restaurant_images/{{deletedRestaurantId.image }}.png' class="imageStyle">
+            <img *ngIf="deletedRestaurantId.image==='no'" src='{{assetsPathDeleteImage}}/restaurant_images/claro_img.png' class="imageStyle"></td>
         <td>{{ deletedRestaurantId['Chef'].name }}</td>
         <td>{{ deletedRestaurantId['signature_dish'] ? deletedRestaurantId['signature_dish'].name : 'no' }}</td>
         <td>{{ deletedRestaurantId['isPopular'] ? "Yes" : "No" }}</td>
@@ -33,8 +33,8 @@
     <tbody>
     <tr>
         <td>{{deletedChefId.name}}</td>
-        <td><img *ngIf="deletedChefId.image!=='no'" src='../assets/chef_images/{{deletedChefId.image}}.png' class="imageStyle">
-            <img *ngIf="deletedChefId.image==='no'" src='../assets/chef_images/defaultUserIcon.png' class="imageStyle"></td>
+        <td><img *ngIf="deletedChefId.image!=='no'" src='{{assetsPathDeleteImage}}/chef_images/{{deletedChefId.image}}.png' class="imageStyle">
+            <img *ngIf="deletedChefId.image==='no'" src='{{assetsPathDeleteImage}}/chef_images/defaultUserIcon.png' class="imageStyle"></td>
         <td>{{deletedChefId.description}}</td>
     </tr>
     </tbody>
@@ -54,9 +54,9 @@
     <tbody>
     <tr>
         <td>{{ deletedDishId.name }}</td>
-        <td><img *ngIf="deletedDishId.image!=='no'" src='../assets/dish_images/{{deletedDishId.image }}.png'
+        <td><img *ngIf="deletedDishId.image!=='no'" src='{{assetsPathDeleteImage}}/dish_images/{{deletedDishId.image }}.png'
                  class="imageStyle">
-            <img *ngIf="deletedDishId.image==='no'" src='../assets/restaurant_images/claro_img.png' class="imageStyle">
+            <img *ngIf="deletedDishId.image==='no'" src='{{assetsPathDeleteImage}}/restaurant_images/claro_img.png' class="imageStyle">
         </td>
         <td>{{ deletedDishId['description']}}</td>
         <td>{{deletedDishId['price']}}</td>

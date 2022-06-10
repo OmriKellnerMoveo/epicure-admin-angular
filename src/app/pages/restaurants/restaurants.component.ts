@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Restaurant} from '../../models/restaurant.model';
 import {RestaurantsService} from '../../services/restaurants.service';
+import {LocalMode} from "../../services/global-api.service";
 
 @Component({
     selector: 'app-restaurants',
@@ -17,11 +18,17 @@ export class RestaurantsComponent implements OnInit {
     showModal: boolean = false;
     showDeleteModal: boolean = false;
     deletedRestaurantId: Restaurant;
+    assetsPats:string;
 
     constructor(private restaurantsService: RestaurantsService) {
     }
 
     ngOnInit(): void {
+         if (LocalMode){
+             this.assetsPats="../assets"
+         }else {
+             this.assetsPats="./assets"
+         }
         this.fetchDishes()
     }
 

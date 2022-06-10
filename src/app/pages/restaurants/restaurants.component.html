@@ -45,9 +45,9 @@
         <tbody *ngFor="let restaurant of this['restaurants']">
         <tr>
             <td>{{ restaurant.name }}</td>
-            <td><img *ngIf="restaurant.image!=='no'" src='../assets/restaurant_images/{{restaurant.image }}.png'
+            <td><img *ngIf="restaurant.image!=='no'" src='{{assetsPats}}/restaurant_images/{{restaurant.image }}.png'
                      class="imageStyle">
-                <img *ngIf="restaurant.image==='no'" src='../assets/restaurant_images/claro_img.png' class="imageStyle">
+                <img *ngIf="restaurant.image==='no'" src='{{assetsPats}}/restaurant_images/claro_img.png' class="imageStyle">
             </td>
             <td>{{ restaurant['Chef'].name }}</td>
             <td>{{ restaurant['signature_dish'] ? restaurant['signature_dish'].name : 'no' }}</td>
