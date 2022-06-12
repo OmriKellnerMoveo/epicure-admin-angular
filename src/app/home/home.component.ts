@@ -22,10 +22,12 @@ assetsPathLogo:string
     localStorage.removeItem("token")
   }
   checkIfConnecting(){
-    if (localStorage.getItem("token")!==undefined){
+    if (localStorage.getItem("token")!==undefined && localStorage.getItem("token")!==null){
+      console.log('connecting')
       return true
     }
     else
-      return false
+      console.log('not connecting')
+    return false
   }
 }
