@@ -13,12 +13,20 @@
     >
       invalid name
     </span>
-    <label for="chef">*Chef: </label>
-    <select id="Chef" formControlName="Chef">
+    <label>*Chef: </label>
+    <select *ngIf="actionMode==='edit'" id="editChef" formControlName="Chef">
       <option [defaultSelected]="true" [value]="restaurantForm.get('Chef')">
         {{ this.restaurantForm.value.Chef['name'] }}
       </option>
               <option *ngFor="let c of newChefList"
+                      [ngValue]="c"
+              >{{c.name}}</option>
+    </select>
+    <select *ngIf="actionMode==='add'" id="addChef" formControlName="Chef">
+      <option [defaultSelected]="true" [disabled]="true">
+        select chef...
+      </option>
+              <option *ngFor="let c of chefs"
                       [ngValue]="c"
               >{{c.name}}</option>
             </select>
@@ -30,18 +38,24 @@
     >
       Please Choose a chef
     </span>
-    <label *ngIf="actionMode!=='add'" for="restaurantDishes"> Signature Dish: </label>
-    <select *ngIf="actionMode!=='add'" id="restaurantDishes" formControlName="signature_dish">
-        <option [defaultSelected]="true"  *ngIf="restaurantDishes &&restaurantDishes.length===0">
+    <label *ngIf="actionMode==='edit'" for="restaurantDishes"> Signature Dish: </label>
+
+    <select *ngIf="actionMode==='edit' && !this.editRestaurant.signature_dish" id="restaurantDishes" formControlName="signature_dish">
+        <option [defaultSelected]="true"  *ngIf="restaurantDishes && restaurantDishes.length===0">
             No Dishes
-        </option>
-        <option [defaultSelected]="true"  *ngIf="restaurantDishes &&restaurantDishes.length!==0" [value]="restaurantForm.get('signature_dish')">
-            {{this.editRestaurant.signature_dish.name}}
         </option>
       <option  *ngFor="let dish of restaurantDishes" [ngValue]="dish">
         {{ dish.name }}
       </option>
     </select>
+        <select *ngIf="actionMode==='edit' && restaurantDishes &&restaurantDishes.length!==0 && this.editRestaurant.signature_dish" id="restaurantSignDishes" formControlName="signature_dish">
+            <option [defaultSelected]="true" [value]="restaurantForm.get('signature_dish')">
+                {{this.editRestaurant.signature_dish.name}}
+            </option>
+            <option  *ngFor="let dish of newDishList" [ngValue]="dish">
+                {{ dish.name }}
+            </option>
+        </select>
     </div>
     <div >
     <label > Is Popular? </label>
