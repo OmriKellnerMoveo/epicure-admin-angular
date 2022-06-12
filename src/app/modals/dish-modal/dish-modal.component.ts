@@ -16,7 +16,7 @@ export class DishModalComponent implements OnInit {
   @Input() editDish: Dish;
   @Output() dishCreated= new EventEmitter<Dish>();
   @Output() closeModalPopup= new EventEmitter<Boolean>();
-  dishTags:string[]=[];
+  dishTags:string[];
   tags: Array<string> =["Spicy", "Vegan", "Vegetarian"]
   dishesImages:string[]=[
     'garbanzoFriyoImage',
@@ -41,7 +41,7 @@ export class DishModalComponent implements OnInit {
       image: new FormControl(this.editDish.image? this.editDish.image : ''),
       price: new FormControl(this.editDish.price? this.editDish.price : ''),
       description: new FormControl(this.editDish.description? this.editDish.description : ''),
-      tags: new FormControl(this.editDish.tags? this.editDish.tags : ['']),
+      tags: new FormControl(this.editDish.tags? this.editDish.tags : []),
       restaurant_id: new FormControl(this.editDish.restaurant_id? this.editDish.restaurant_id : ''),
     })
 
@@ -60,7 +60,12 @@ export class DishModalComponent implements OnInit {
   }
   setDishTag(event){
     if (event.target.checked){
-      this.dishTags.push(event.target.value)
+      if (this.dishTags[0]===''){
+        this.dishTags[0]=event.target.value
+      }
+      else {
+        this.dishTags.push(event.target.value)
+      }
     }
     else {
       console.log(this.dishTags.indexOf(event.target.value))

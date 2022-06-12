@@ -26,6 +26,7 @@ export class RestaurantModalComponent implements OnInit {
     restaurantDishes: Dish[]
     restaurantImages: string[] = ['claro_img', 'kitchenMarketImage', 'lumina_img', 'mashyaImage', 'onzaImage', 'tiger_Lilly_img']
     newChefList:Chef[];
+    newDishList:Dish[];
     constructor(private chefsService: ChefsService, private dishService: DishesService) {
     }
 
@@ -46,7 +47,9 @@ export class RestaurantModalComponent implements OnInit {
     fetchGetAllChefs() {
         this.chefsService.getAllChefs().subscribe(chefs => {
             this.chefs = chefs;
-            this.CreateListWithoutObj(this.editRestaurant['Chef'],this.chefs)
+            if (this.actionMode === 'edit') {
+                this.CreateListWithoutObj(this.editRestaurant['Chef'], this.chefs)
+            }
         });
     }
 
@@ -58,14 +61,26 @@ export class RestaurantModalComponent implements OnInit {
             }
         })
     }
+
     fetchGetAllRestaurantDishes() {
-        if (this.actionMode !== 'add') {
+        if (this.actionMode === 'edit') {
             this.dishService.getAllRestaurantDishes(this.editRestaurant['_id']).subscribe(dish => {
                 this.restaurantDishes = dish;
+                if (this.editRestaurant.signature_dish){
+                    this.CreateDishesListWithoutObj(this.editRestaurant.signature_dish, this.restaurantDishes)
+                }
             });
+
         }
     }
-
+    CreateDishesListWithoutObj(objA:Dish,objB:Dish[]){
+        this.newDishList=[]
+        objB.map((obj)=>{
+            if (obj["_id"]!==objA['_id']){
+                this.newDishList.push(obj)
+            }
+        })
+    }
     onSubmit() {
         console.log(this.restaurantForm.value,'rest before update')
         this.restaurantCreated.emit(this.restaurantForm.value)
