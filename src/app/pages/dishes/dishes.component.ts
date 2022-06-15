@@ -20,6 +20,7 @@ export class DishesComponent implements OnInit {
     deletedDishId: Dish;
     assetsPatsDishes:string;
     assetsPathIcon:string;
+    allDishesImage: string[];
     constructor(private dishesService: DishesService) {
     }
 
@@ -39,7 +40,15 @@ export class DishesComponent implements OnInit {
         this.dishesService.getAllDishes().subscribe(dishes => {
             this.dishes = dishes;
             console.log(this.dishes)
+            this.getAllImageDishes()
         });
+    }
+    getAllImageDishes() {
+        this.allDishesImage=[];
+        this.dishes.map((dish)=>{
+            this.allDishesImage.push(dish.image)
+        })
+        console.log(this.allDishesImage)
     }
 
     setDeleteModal(dish: Dish) {

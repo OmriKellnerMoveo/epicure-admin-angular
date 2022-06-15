@@ -17,11 +17,24 @@
           <input id="price" type="number" formControlName="price" class="form-control" required/>
 
           <label for="dishesImages"> Image: </label>
-            <select id="dishesImages" formControlName="image">
+            <div class="radio" >
+                <input checked type="radio" id="html" name="fav_language" value="Choose" (change)="setImageOption($event)">
+                <label for="html">Choose</label><br>
+                <input type="radio" id="css" name="fav_language" value="Upload" (change)="setImageOption($event)">
+                <label for="css">Upload</label><br>
+            </div>
+
+            <div *ngIf="!ChooseImage">
+                <label for="addImage">Insert url image: </label>
+                <input id="addImage" formControlName="image" type="text" class="form-control" />
+            </div>
+
+            <select  *ngIf="ChooseImage" id="dishesImages" formControlName="image">
                 <option  *ngFor="let dishImages of dishesImages" [ngValue]="dishImages">
                     {{ dishImages }}
                 </option>
             </select>
+
 
 
             <label for="restaurant_id"> Restaurant: </label>
@@ -58,15 +71,4 @@
       <button class="btn btn-secondary" (click)="closeModal()">Close</button>
     </form>
   </div>
-<!--[defaultSelected]="this.editRestaurant.image"-->
-<!--(change)="onCheckChange($event)"-->
-<!--      <input-->
-<!--        id="image"-->
-<!--        formControlName="image"-->
-<!--        type="text"-->
-<!--        class="form-control"-->
-<!--        #image-->
-<!--      />-->
-<!--      <div>-->
-<!--        <img   [src]="image.value" />-->
-<!--      </div>-->
+

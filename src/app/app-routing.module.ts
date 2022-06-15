@@ -12,13 +12,18 @@ let isLoggedIn:boolean=false;
         isLoggedIn=true
     }
 const appRoutes: Routes=[
-    {path: '', redirectTo: isLoggedIn?'/restaurants':'/login', pathMatch: 'full'},
+    {path: 'admin/chefs', component: ChefsComponent,canActivate: [AuthGuardService] },
+    {path: 'admin/restaurants', component: RestaurantsComponent ,canActivate: [AuthGuardService] },
+    {path: 'admin/dishes', component: DishesComponent,canActivate: [AuthGuardService] },
+
+    // {path: 'admin', redirectTo: isLoggedIn?'/restaurants':'/login', pathMatch: 'full'},
     {path: 'restaurants', component: RestaurantsComponent ,canActivate: [AuthGuardService] },
     {path: 'chefs', component: ChefsComponent,canActivate: [AuthGuardService] },
     {path: 'dishes', component: DishesComponent,canActivate: [AuthGuardService] },
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
-    {path: '**', redirectTo: isLoggedIn?'/restaurants':'/login', pathMatch: 'full'},
+    {path: '**', component: isLoggedIn?RestaurantsComponent:LoginComponent},
+    // {path: '**', redirectTo: isLoggedIn?'/restaurants':'/login', pathMatch: 'full'},
 ]
 @NgModule({
  imports:[RouterModule.forRoot(appRoutes)],

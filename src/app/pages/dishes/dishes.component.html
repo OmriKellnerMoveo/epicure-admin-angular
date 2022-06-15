@@ -11,6 +11,7 @@
             [editDish]="{ _id:'',  name:'', image:'', description:'', price:null, restaurant_id:{ _id:'',  name:'', image:'', Chef:null, signatureDish:null, isPopular: false}, tags:['']}"
             (closeModalPopup)="closeModal($event)"
             (dishCreated)="addDish($event)"
+            [dishesImages]="allDishesImage"
     ></app-dish-modal>
 
     <app-dish-modal
@@ -21,6 +22,8 @@
             [editDish]="editDish"
             (closeModalPopup)="closeModal($event)"
             (dishCreated)="addDish($event)"
+            [dishesImages]="allDishesImage"
+
     ></app-dish-modal>
 
     <app-delete-modal
@@ -47,7 +50,7 @@
     <tbody *ngFor="let dish of this.dishes">
     <tr>
         <td>{{ dish.name }}</td>
-        <td><img *ngIf="dish.image!=='no'" src='{{assetsPatsDishes}}/dish_images/{{dish.image }}.png'
+        <td><img *ngIf="dish.image!=='no'" src='{{dish.image }}'
                  class="imageStyle">
             <img *ngIf="dish.image==='no'" src='{{assetsPatsDishes}}/restaurant_images/claro_img.png' class="imageStyle">
         </td>

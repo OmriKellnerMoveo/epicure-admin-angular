@@ -14,9 +14,12 @@ export class ChefModalComponent implements OnInit {
   @Input() editChef: Chef;
   @Output() chefCreated= new EventEmitter<Chef>();
   @Output() closeModalPopup= new EventEmitter<Boolean>();
-  chefImages:string[]=[
-    'yosi_shitrit_image'
-  ]
+  ChooseImage: boolean=true;
+
+  @Input() chefImages:string[]
+      // =[
+    // 'yosi_shitrit_image'
+  // ]
 
 
   constructor() { }
@@ -35,6 +38,14 @@ export class ChefModalComponent implements OnInit {
 
   closeModal(){
     this.closeModalPopup.emit(false);
+  }
+  setImageOption(event){
+    if (event.target.value==='Choose'){
+      this.ChooseImage=true
+    }
+    else {
+      this.ChooseImage=false
+    }
   }
 
 }

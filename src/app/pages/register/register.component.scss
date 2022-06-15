@@ -53,16 +53,17 @@ select{
 
 }
 .imgContainer {
-  background-image: url("../../../assets/coverImage.png");
-  background-size: contain;
-  background-repeat: no-repeat;
+  //background-image: url("../../../assets/coverImage.png");
+  //background-size: contain;
+  //background-repeat: no-repeat;
   text-align: center;
-  margin: 24px 0 12px 0;
+  //margin: 24px 0 12px 0;
   width: 100vw;
-  height: 48.3vw;
+  height: 20vw;
   object-fit: cover;
   display: flex;
   justify-content: space-around;
+  background-color: #fafafa;
 
 }
 .avatar {

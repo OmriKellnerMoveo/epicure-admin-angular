@@ -13,7 +13,7 @@
     <tbody>
     <tr>
         <td>{{ deletedRestaurantId.name }}</td>
-        <td><img *ngIf="deletedRestaurantId.image!=='no'" src='{{assetsPathDeleteImage}}/restaurant_images/{{deletedRestaurantId.image }}.png' class="imageStyle">
+        <td><img *ngIf="deletedRestaurantId.image!=='no'" src='{{deletedRestaurantId.image}}' class="imageStyle">
             <img *ngIf="deletedRestaurantId.image==='no'" src='{{assetsPathDeleteImage}}/restaurant_images/claro_img.png' class="imageStyle"></td>
         <td>{{ deletedRestaurantId['Chef'].name }}</td>
         <td>{{ deletedRestaurantId['signature_dish'] ? deletedRestaurantId['signature_dish'].name : 'no' }}</td>
@@ -33,7 +33,7 @@
     <tbody>
     <tr>
         <td>{{deletedChefId.name}}</td>
-        <td><img *ngIf="deletedChefId.image!=='no'" src='{{assetsPathDeleteImage}}/chef_images/{{deletedChefId.image}}.png' class="imageStyle">
+        <td><img *ngIf="deletedChefId.image!=='no'" src='{{deletedChefId.image}}' class="imageStyle">
             <img *ngIf="deletedChefId.image==='no'" src='{{assetsPathDeleteImage}}/chef_images/defaultUserIcon.png' class="imageStyle"></td>
         <td>{{deletedChefId.description}}</td>
     </tr>
@@ -54,7 +54,7 @@
     <tbody>
     <tr>
         <td>{{ deletedDishId.name }}</td>
-        <td><img *ngIf="deletedDishId.image!=='no'" src='{{assetsPathDeleteImage}}/dish_images/{{deletedDishId.image }}.png'
+        <td><img *ngIf="deletedDishId.image!=='no'" src='{{deletedDishId.image}}'
                  class="imageStyle">
             <img *ngIf="deletedDishId.image==='no'" src='{{assetsPathDeleteImage}}/restaurant_images/claro_img.png' class="imageStyle">
         </td>

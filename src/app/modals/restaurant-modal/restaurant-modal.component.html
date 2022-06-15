@@ -66,11 +66,24 @@
       </label>
     </div>
     <label> Image: </label>
-        <select id="restaurantImages" formControlName="image">
+        <div class="radio" >
+            <input checked type="radio" id="html" name="fav_language" value="Choose" (change)="setImageOption($event)">
+            <label for="html">Choose</label><br>
+            <input type="radio" id="css" name="fav_language" value="Upload" (change)="setImageOption($event)">
+            <label for="css">Upload</label><br>
+        </div>
+
+        <div *ngIf="!ChooseImage">
+            <label for="addImage">Insert url image: </label>
+            <input id="addImage" formControlName="image" type="text" class="form-control" />
+        </div>
+
+        <select  *ngIf="ChooseImage" id="restaurantImages" formControlName="image">
             <option  *ngFor="let restaurantImage of restaurantImages" [ngValue]="restaurantImage" [defaultSelected]="this.editRestaurant.image">
                 {{ restaurantImage }}
             </option>
         </select>
+
     </div>
    </div>
     <br />

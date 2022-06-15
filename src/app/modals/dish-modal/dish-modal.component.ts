@@ -3,28 +3,28 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import {Dish} from "../../models/dish.model";
 import {RestaurantsService} from "../../services/restaurants.service";
 import {Restaurant} from "../../models/restaurant.model";
+import {DishesService} from "../../services/dishes.service";
 
 @Component({
   selector: 'app-dish-modal',
   templateUrl: './dish-modal.component.html',
-  styleUrls: ['./dish-modal.component.scss']
+  styleUrls: ['./dish-modal.component.scss'],
+  providers: [DishesService]
 })
 export class DishModalComponent implements OnInit {
   dishForm:FormGroup;
   @Input() message: string;
   @Input() actionMode: string;
   @Input() editDish: Dish;
+  @Input() dishesImages: string[]
   @Output() dishCreated= new EventEmitter<Dish>();
   @Output() closeModalPopup= new EventEmitter<Boolean>();
   dishTags:string[];
+  ChooseImage: boolean=true;
   tags: Array<string> =["Spicy", "Vegan", "Vegetarian"]
-  dishesImages:string[]=[
-    'garbanzoFriyoImage',
-    'padKi_image',
-    'smokedPizzaImage'
-  ]
+  allDishes:Dish[]
   restaurants:Restaurant[]
-  constructor(private restaurantsService:RestaurantsService) { }
+  constructor(private restaurantsService:RestaurantsService , private dishesService: DishesService) { }
 
   ngOnInit(): void {
     console.log(this.editDish.restaurant_id['name'],'dish')
@@ -32,7 +32,6 @@ export class DishModalComponent implements OnInit {
       this.restaurants = restaurant;
       console.log(this.restaurants);
     });
-
     this.dishTags=this.editDish.tags
 
     this.dishForm= new FormGroup({
@@ -44,9 +43,15 @@ export class DishModalComponent implements OnInit {
       tags: new FormControl(this.editDish.tags? this.editDish.tags : []),
       restaurant_id: new FormControl(this.editDish.restaurant_id? this.editDish.restaurant_id : ''),
     })
-
   }
-
+  setImageOption(event){
+    if (event.target.value==='Choose'){
+      this.ChooseImage=true
+    }
+    else {
+      this.ChooseImage=false
+    }
+  }
   onSubmit(){
     this.dishForm.value.tags=this.dishTags
     console.log(this.dishForm.value)

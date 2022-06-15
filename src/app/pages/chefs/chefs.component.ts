@@ -19,6 +19,7 @@ export class ChefsComponent implements OnInit {
   showModal: boolean = false;
   showDeleteModal: boolean = false;
   chefOfTheWeekShowModal:boolean = false
+  allChefsImage: string[];
   deletedChefId: Chef={    _id:'',
     name:'',
     image: '',
@@ -47,7 +48,15 @@ export class ChefsComponent implements OnInit {
     this.chefsService.getAllChefs().subscribe((chefs) => {
       this.chefs = chefs;
       console.log('CHEFS FROM SERVER: ',this.chefs);
+      this.getAllImageChefs()
     });
+  }
+  getAllImageChefs() {
+    this.allChefsImage=[];
+    this.chefs.map((chef)=>{
+      this.allChefsImage.push(chef.image)
+    })
+    console.log(this.allChefsImage)
   }
   fetchChefOfTheWeek(){
     console.log('****** FETCHING CHEF OF THE WEEK  *******')

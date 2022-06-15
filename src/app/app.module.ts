@@ -22,6 +22,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {AuthInterceptor} from "./services/token.service";
+import {MatRadioModule} from "@angular/material/radio";
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import {AuthInterceptor} from "./services/token.service";
         MaterialModule,
         MatCardModule,
         MatFormFieldModule,
+        MatRadioModule,
     ],
   providers: [
       {

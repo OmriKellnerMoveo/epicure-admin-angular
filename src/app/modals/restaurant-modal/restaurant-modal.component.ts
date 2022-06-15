@@ -18,20 +18,20 @@ export class RestaurantModalComponent implements OnInit {
     @Input() editRestaurant: Restaurant;
     @Output() closeEditModal = new EventEmitter<Boolean>();
     @Output() restaurantCreated = new EventEmitter<Restaurant>();
+    ChooseImage: boolean=true;
 
 
     chefs: Chef[];
     isPopular: boolean[] = [true, false]
     restaurantForm: FormGroup;
     restaurantDishes: Dish[]
-    restaurantImages: string[] = ['claro_img', 'kitchenMarketImage', 'lumina_img', 'mashyaImage', 'onzaImage', 'tiger_Lilly_img']
+    @Input() restaurantImages;
     newChefList:Chef[];
     newDishList:Dish[];
     constructor(private chefsService: ChefsService, private dishService: DishesService) {
     }
 
     ngOnInit(): void {
-        console.log(this.actionMode,'asc')
         this.fetchGetAllChefs();
         this.fetchGetAllRestaurantDishes();
         this.restaurantForm = new FormGroup({
@@ -40,7 +40,7 @@ export class RestaurantModalComponent implements OnInit {
             image: new FormControl(this.editRestaurant.image ? this.editRestaurant.image : ''),
             Chef: new FormControl(this.editRestaurant['Chef'] ? this.editRestaurant['Chef'] : '', Validators.required),
             isPopular: new FormControl(this.editRestaurant.isPopular ? this.editRestaurant.isPopular : false),
-            signature_dish: new FormControl(this.editRestaurant.signature_dish ? this.editRestaurant.signature_dish : 'no', Validators.required),
+            signature_dish: new FormControl(this.editRestaurant.signature_dish ? this.editRestaurant.signature_dish :null),
         })
     }
 
@@ -51,6 +51,14 @@ export class RestaurantModalComponent implements OnInit {
                 this.CreateListWithoutObj(this.editRestaurant['Chef'], this.chefs)
             }
         });
+    }
+    setImageOption(event){
+        if (event.target.value==='Choose'){
+            this.ChooseImage=true
+        }
+        else {
+            this.ChooseImage=false
+        }
     }
 
     CreateListWithoutObj(objA:Chef,objB:Chef[]){

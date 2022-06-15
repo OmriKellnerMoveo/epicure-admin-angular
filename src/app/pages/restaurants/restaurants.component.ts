@@ -19,6 +19,8 @@ export class RestaurantsComponent implements OnInit {
     showDeleteModal: boolean = false;
     deletedRestaurantId: Restaurant;
     assetsPats:string;
+    allRestaurantsImage: string[];
+
 
     constructor(private restaurantsService: RestaurantsService) {
     }
@@ -36,7 +38,15 @@ export class RestaurantsComponent implements OnInit {
         this.restaurantsService.getAllRestaurants().subscribe((restaurant) => {
             this.restaurants = restaurant;
             console.log(this.restaurants);
+            this.getAllImageRestaurants()
         });
+    }
+    getAllImageRestaurants() {
+        this.allRestaurantsImage=[];
+        this.restaurants.map((restaurant)=>{
+            this.allRestaurantsImage.push(restaurant.image)
+        })
+        console.log(this.allRestaurantsImage)
     }
 
     setShowModal(action: string): void {
